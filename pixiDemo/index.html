@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="js/pixi.min.js"></script>
+    <script>
+    	var app = new PIXI.Application(1366,768);
+    	document.body.appendChild(app.view);
+    	
+    	var bg = new PIXI.Sprite.fromImage("res/背景.png");
+    	app.stage.addChild(bg);
+    	
+    	var gj = new PIXI.Sprite.fromImage("res/高丽建筑.png");
+    	app.stage.addChild(gj);
+    	gj.width=1200;
+    	gj.height=900;
+    	gj.x=100;
+    	gj.y=-150;
+    	
+    	var gg = new PIXI.Sprite.fromImage("res/高丽光圈.png");
+    	app.stage.addChild(gg);
+    	gg.x=180;
+    	gg.y=20;
+    	gg.width=1150;
+    	gg.height=750;
+    	gg.visible=false;
+    	
+    	var gm = new PIXI.Sprite.fromImage("res/高丽名称.png");
+    	app.stage.addChild(gm);
+    	gm.width=200;
+    	gm.height=75;
+    	gm.x=600;
+    	gm.y=180;
+    	gm.visible=false;
+    	
+    	bg.interactive = true;
+		bg.on("mousemove", guang1);
+		function guang1(event) {
+    		var pos = event.data.getLocalPosition(app.stage);
+    		if(pos.x>250&&pos.x<1100&&pos.y<700&&pos.y>200){
+    			gg.visible=true;
+    			gm.visible=true;
+    		}
+    		else{
+    			gg.visible=false;
+    			gm.visible=false;
+    		}
+		}
+		
+		var gao = new PIXI.Sprite.fromImage("res/高丽柜台.png");
+		app.stage.addChild(gao);
+		gao.alpha=0;
+		gm.interactive = true;
+		gm.on("click", guitai1);
+		function guitai1(event) {
+			gj.alpha-=0.01;
+		}
+		
+		app.ticker.add(animate);
+		function animate() {
+			if(gj.alpha<=0.99&&gj.alpha>=0){
+				gao.alpha+=0.01;
+				gj.alpha-=0.01;
+			}
+		}
+		
+		var g1 = new PIXI.Sprite.fromImage("res/货品1.png");
+    	app.stage.addChild(g1);
+    	g1.x=200;
+    	g1.y=440;
+    	g1.width=220;
+    	g1.height=305;
+    	g1.visible=false;
+    	
+    	bg.interactive = true;
+		bg.on("mousemove", guang11);
+		function guang11(event) {
+    		var pos = event.data.getLocalPosition(app.stage);
+    		if(pos.x>220&&pos.x<380&&pos.y<745&&pos.y>445&&gj.alpha<0.9){
+    			g1.visible=true;
+    		}
+    		else{
+    			g1.visible=false;
+    		}
+		}
+		
+		var a = 0;
+		
+		g1.interactive = true;
+		g1.on("click", pai1);
+		function pai1(event) {
+			var gp1 = new PIXI.Sprite.fromImage("res/日本钱币.png");
+    	    app.stage.addChild(gp1);
+    	    gp1.width=820;
+    	    gp1.height=600;
+    	    gp1.x=300;
+    	    gp1.y=100;
+    	    var auttom1 = new PIXI.Sprite.fromImage("res/卡牌按钮.png");
+    	    app.stage.addChild(auttom1);
+    	    auttom1.x=700;
+    	    auttom1.y=600;
+    	    auttom1.width=180;
+    	    auttom1.height=90;
+    	    auttom1.interactive = true;
+			auttom1.on("click", jika1);
+			function jika1(event) {
+				app.stage.removeChild(gp1);
+				app.stage.removeChild(auttom1);
+				a=1;
+			}
+		}
+		
+		var b = 0;
+		var g2 = new PIXI.Sprite.fromImage("res/货品2.png");
+    	app.stage.addChild(g2);
+    	g2.x=382;
+    	g2.y=288;
+    	g2.width=150;
+    	g2.height=135;
+    	g2.visible=false;
+    	
+    	bg.interactive = true;
+		bg.on("mousemove", guang12);
+		function guang12(event) {
+    		var pos = event.data.getLocalPosition(app.stage);
+    		if(pos.x>385&&pos.x<530&&pos.y<420&&pos.y>280&&gj.alpha<0.9){
+    			g2.visible=true;
+    		}
+    		else{
+    			g2.visible=false;
+    		}
+		}
+		g2.interactive = true;
+		g2.on("click", pai2);
+		function pai2(event) {
+			var gp2 = new PIXI.Sprite.fromImage("res/日本钱币.png");
+    	    app.stage.addChild(gp2);
+    	    gp2.width=820;
+    	    gp2.height=600;
+    	    gp2.x=300;
+    	    gp2.y=100;
+    	    var auttom2 = new PIXI.Sprite.fromImage("res/卡牌按钮.png");
+    	    app.stage.addChild(auttom2);
+    	    auttom2.x=700;
+    	    auttom2.y=600;
+    	    auttom2.width=180;
+    	    auttom2.height=90;
+    	    auttom2.interactive = true;
+			auttom2.on("click", jika2);
+			function jika2(event) {
+				app.stage.removeChild(gp2);
+				app.stage.removeChild(auttom2);
+				b=1;
+			}
+		}
+		
+		var c = 0;
+		var g3 = new PIXI.Sprite.fromImage("res/货品3.png");
+    	app.stage.addChild(g3);
+    	g3.x=1210;
+    	g3.y=285;
+    	g3.width=155;
+    	g3.height=135;
+    	g3.visible=false;
+    	
+    	bg.interactive = true;
+		bg.on("mousemove", guang13);
+		function guang13(event) {
+    		var pos = event.data.getLocalPosition(app.stage);
+    		if(pos.x>1210&&pos.x<1300&&pos.y<420&&pos.y>280&&gj.alpha<0.9){
+    			g3.visible=true;
+    		}
+    		else{
+    			g3.visible=false;
+    		}
+		}
+		g3.interactive = true;
+		g3.on("click", pai3);
+		function pai3(event) {
+    	    var gp3 = new PIXI.Sprite.fromImage("res/日本钱币.png");
+    		app.stage.addChild(gp3);
+    	    gp3.width=820;
+    	    gp3.height=600;
+    	    gp3.x=300;
+    	    gp3.y=100;
+    	    var auttom3 = new PIXI.Sprite.fromImage("res/卡牌按钮.png");
+    	    app.stage.addChild(auttom3);
+    	    auttom3.x=700;
+    	    auttom3.y=600;
+    	    auttom3.width=180;
+    	    auttom3.height=90;
+    	    auttom3.interactive = true;
+			auttom3.on("click", jika3);
+			function jika3(event) {
+				app.stage.removeChild(gp3);
+				app.stage.removeChild(auttom3);
+				c=1;
+			}
+		}
+		var jicheng1 = new PIXI.Sprite.fromImage("res/高丽卡牌1.png");
+		app.stage.addChild(jicheng1);
+    	jicheng1.width=820;
+    	jicheng1.height=600;
+    	jicheng1.x=300;
+    	jicheng1.y=100;
+		if(a>=1&&b>=1&&c>=1){
+			jicheng1.visible=true;
+		}
+		else{
+			jicheng1.visible=false;
+		}
+    </script>
+</body>
+</html>
